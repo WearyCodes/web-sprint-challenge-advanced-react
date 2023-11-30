@@ -113,11 +113,16 @@ export default class AppClass extends React.Component {
     // and change any states accordingly.
     const direction = evt.target.id;
     const nextIndex = this.getNextIndex(direction);
-this.setState((prevState) => ({
-index: nextIndex,
-steps: prevState.steps + 1,
-}))
-    this.getXYMessage();
+    this.setState(
+      (prevState) => ({
+        ...prevState,
+        index: nextIndex,
+        steps: prevState.steps + 1, // Update steps
+      }),
+      () => {
+        this.getXYMessage(); // Call getXYMessage after updating the state
+      }
+    );
   }
 
   onChange = (evt) => {
@@ -145,7 +150,7 @@ steps: prevState.steps + 1,
     return (
       <div id="wrapper" className={className}>
         <div className="info">
-          <h3 id="coordinates">{this.state.index}</h3>
+          <h3 id="coordinates">{this.state.message}</h3>
           <h3 id="steps">You moved {this.state.steps} times</h3>
         </div>
         <div id="grid">
@@ -161,11 +166,11 @@ steps: prevState.steps + 1,
           {this.state.error && <h3 id="message">{this.state.error}</h3>}
         </div>
         <div id="keypad">
-          <button id="left" onClick={() => this.move}>LEFT</button>
-          <button id="up" onClick={() => this.move}>UP</button>
-          <button id="right" onClick={() => this.move}>RIGHT</button>
-          <button id="down" onClick={() => this.move}>DOWN</button>
-          <button id="reset" onClick={() => this.reset}>reset</button>
+          <button id="left" onClick={this.move}>LEFT</button>
+          <button id="up" onClick={this.move}>UP</button>
+          <button id="right" onClick={this.move}>RIGHT</button>
+          <button id="down" onClick={this.move}>DOWN</button>
+          <button id="reset" onClick={this.reset}>reset</button>
         </div>
         <form onSubmit = {this.onSubmit}>
           <input id="email" type="email" placeholder="type email" value={this.state.email} onChange={this.onChange}></input>
