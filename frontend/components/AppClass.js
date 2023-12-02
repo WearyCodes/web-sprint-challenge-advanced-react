@@ -50,8 +50,8 @@ export default class AppClass extends React.Component {
         y = 1;
         break
       case 3:
-        x = 2;
-        y = 1;
+        x = 1;
+        y = 2;
         break
       case 4:
         x = 2;
@@ -62,12 +62,12 @@ export default class AppClass extends React.Component {
         y = 2;
         break
       case 6:
-        x = 3;
-        y = 1;
+        x = 1;
+        y = 3;
         break
       case 7:
-        x = 3;
-        y = 2;
+        x = 2;
+        y = 3;
         break
       case 8:
         x = 3;
@@ -151,7 +151,7 @@ export default class AppClass extends React.Component {
       <div id="wrapper" className={className}>
         <div className="info">
           <h3 id="coordinates">{this.state.message}</h3>
-          <h3 id="steps">You moved {this.state.steps} times</h3>
+          <h3 id="steps">You moved {this.state.steps} time{this.state.steps > 1 || this.state.steps === 0 ? `s` : ''}</h3>
         </div>
         <div id="grid">
           {
