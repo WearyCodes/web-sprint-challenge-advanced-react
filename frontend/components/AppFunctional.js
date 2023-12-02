@@ -133,7 +133,10 @@ export default function AppFunctional(props) {
   }
 useEffect(() => {
   getXYMessage()
+  setMessage('')
 }, [index])
+
+
   function onChange(evt) {
     // You will need this to update the value of the input.
     setEmail(evt.target.value)

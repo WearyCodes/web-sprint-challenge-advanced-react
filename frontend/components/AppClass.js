@@ -20,7 +20,7 @@ const initialState = {
 
 export default class AppClass extends React.Component {
 
-  constructor(){
+  constructor() {
     super();
     this.state = {
       message: initialMessage,
@@ -44,7 +44,7 @@ export default class AppClass extends React.Component {
         x = 1;
         y = 1;
         break
-      case 1: 
+      case 1:
         x = 2;
         y = 1;
         break
@@ -60,7 +60,7 @@ export default class AppClass extends React.Component {
         x = 2;
         y = 2;
         break
-      case 5 :
+      case 5:
         x = 3;
         y = 2;
         break
@@ -77,7 +77,7 @@ export default class AppClass extends React.Component {
         y = 3;
         break
     }
-    return {x, y}
+    return { x, y }
   }
 
   getXYMessage = () => {
@@ -85,7 +85,7 @@ export default class AppClass extends React.Component {
     // You can use the `getXY` helper above to obtain the coordinates, and then `getXYMessage`
     // returns the fully constructed string.
     const { x, y } = this.getXY(this.state.index);
-    this.setState({...this.state, coordinates: `Coordinates (${x}, ${y})`});
+    this.setState({ ...this.state, coordinates: `Coordinates (${x}, ${y})` });
   }
 
   reset = () => {
@@ -99,14 +99,23 @@ export default class AppClass extends React.Component {
     // this helper should return the current index unchanged.
     switch (direction) {
       case 'up':
+        if (this.state.index === 0 || this.state.index === 1 || this.state.index === 2) { this.setState({ ...this.state, message: 'You can`t go up' }) }
+        else {this.setState({...this.state, message: ''})}
         return this.state.index - 3 >= 0 ? this.state.index - 3 : this.state.index;
       case 'down':
+        if (this.state.index === 6 || this.state.index === 7 || this.state.index === 8) { this.setState({ ...this.state, message: 'You can`t go down' }) }
+        else {this.setState({...this.state, message: ''})}
         return this.state.index + 3 < 9 ? this.state.index + 3 : this.state.index;
       case 'right':
+        if (this.state.index === 2 || this.state.index === 5 || this.state.index === 8) { this.setState({ ...this.state, message: 'You can`t go right' }) }
+        else {this.setState({...this.state, message: ''})}
         return (this.state.index + 1) % 3 !== 0 ? this.state.index + 1 : this.state.index;
       case 'left':
+        if (this.state.index === 0 || this.state.index === 3 || this.state.index === 6) { this.setState({ ...this.state, message: 'You can`t go left' }) }
+        else {this.setState({...this.state, message: ''})}
         return this.state.index % 3 !== 0 ? this.state.index - 1 : this.state.index;
       default:
+        this.setState({...this.state, message: ''})
         return this.state.index;
     }
   }
@@ -120,17 +129,18 @@ export default class AppClass extends React.Component {
       (prevState) => ({
         ...prevState,
         index: nextIndex,
-        steps: prevState.steps + 1, // Update steps
+        steps: nextIndex === prevState.index ? prevState.steps : prevState.steps + 1,
       }),
-      () => {
+        () => {
         this.getXYMessage(); // Call getXYMessage after updating the state
       }
     );
+
   }
 
   onChange = (evt) => {
     // You will need this to update the value of the input.
-    this.setState({...this.state, email: evt.target.value})
+    this.setState({ ...this.state, email: evt.target.value })
   }
 
   onSubmit = (evt) => {
@@ -144,8 +154,8 @@ export default class AppClass extends React.Component {
     };
 
     axios.post('http://localhost:9000/api/result', submitInfo)
-      .then(res => this.setState({...this.state, message: res.data.message}))
-      .catch(err => this.setState({...this.state, message: err.response.data.message}));
+      .then(res => this.setState({ ...this.state, message: res.data.message }))
+      .catch(err => this.setState({ ...this.state, message: err.response.data.message }));
   }
 
   render() {
@@ -175,7 +185,7 @@ export default class AppClass extends React.Component {
           <button id="down" onClick={this.move}>DOWN</button>
           <button id="reset" onClick={this.reset}>reset</button>
         </div>
-        <form onSubmit = {this.onSubmit}>
+        <form onSubmit={this.onSubmit}>
           <input id="email" type="email" placeholder="type email" value={this.state.email} onChange={this.onChange}></input>
           <input id="submit" type="submit"></input>
         </form>
