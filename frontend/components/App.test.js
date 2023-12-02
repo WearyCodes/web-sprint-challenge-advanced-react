@@ -1,4 +1,5 @@
 // Write your tests here
+import React from "react"
 import AppClass from "./AppClass"
 import { render, screen } from "@testing-library/react"
 test('The page renders', () => {

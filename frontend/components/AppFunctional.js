@@ -106,7 +106,7 @@ export default function AppFunctional(props) {
     const nextIndex = getNextIndex(direction);
     setIndex(nextIndex);
     setSteps(steps + 1);
-    getXYMessage();
+    () => {getXYMessage()};
     
     // evt.target.id will be direction
 
