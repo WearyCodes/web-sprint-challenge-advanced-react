@@ -1,5 +1,5 @@
 import React from 'react'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import axios from 'axios'
 // Suggested initial states
 const initialMessage = ''
@@ -106,14 +106,13 @@ export default function AppFunctional(props) {
     const nextIndex = getNextIndex(direction);
     setIndex(nextIndex);
     setSteps(steps + 1);
-    () => {getXYMessage()};
-    
     // evt.target.id will be direction
-
     // This event handler can use the helper above to obtain a new index for the "B",
     // and change any states accordingly.
   }
-
+useEffect(() => {
+  getXYMessage()
+}, [index])
   function onChange(evt) {
     // You will need this to update the value of the input.
     setEmail(evt.target.value)
