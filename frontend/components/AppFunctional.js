@@ -11,7 +11,7 @@ const initialCoordinates = 'Coordinates (2, 2)'
 
 export default function AppFunctional(props) {
 
-  const [message, setMessage] = useState(initialMessage)
+  const [message, setMessage] = useState()
   const [email, setEmail] = useState(initialEmail)
   const [steps, setSteps] = useState(initialSteps)
   const [index, setIndex] = useState(initialIndex)
