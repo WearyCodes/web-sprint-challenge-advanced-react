@@ -7,6 +7,7 @@ const initialEmail = ''
 const initialSteps = 0
 const initialIndex = 4 // the index the "B" is at
 const initialError = ''
+const initialCoordinates = 'Coordinates (2, 2)'
 
 export default function AppFunctional(props) {
 
@@ -15,6 +16,7 @@ export default function AppFunctional(props) {
   const [steps, setSteps] = useState(initialSteps)
   const [index, setIndex] = useState(initialIndex)
   const [error, setError] = useState(initialError)
+  const [coordinates, setCoordinates] = useState(initialCoordinates)
 
   function getXY(idx) {
     let x = 0
@@ -69,7 +71,7 @@ export default function AppFunctional(props) {
     // You can use the `getXY` helper above to obtain the coordinates, and then `getXYMessage`
     // returns the fully constructed string.
     const { x, y } = getXY(index);
-    setMessage(`Coordinates (${x}, ${y})`);
+    setCoordinates(`Coordinates (${x}, ${y})`);
   }
 
   function reset() {
@@ -84,34 +86,31 @@ export default function AppFunctional(props) {
     switch (direction) {
       case 'up':
         if(index === 0 || index === 1 || index === 2){
-          setError('You can`t go up')
-          
+          setMessage('You can`t go up')
           return index
         }
         else {
         return index - 3 >= 0 ? index - 3 : index;}
       case 'down':
         if(index === 6 || index === 7 || index === 8){
-          setError('You can`t go down')
-          
+          setMessage('You can`t go down')
           return index
         }
         else return index + 3 < 9 ? index + 3 : index;
       case 'right':
         if(index === 2 || index === 5 || index === 8){
-          setError('You can`t go right')
-          
+          setMessage('You can`t go right')
           return index
         }
         else return (index + 1) % 3 !== 0 ? index + 1 : index;
       case 'left':
         if(index === 0 || index === 3 || index === 6){
-          setError('You can`t go left')
-          
+          setMessage('You can`t go left')
           return index
         }
         else return index % 3 !== 0 ? index - 1 : index;
       default:
+        setMessage(initialMessage)
         return index;
 
     }
@@ -151,14 +150,14 @@ useEffect(() => {
     };
 
     axios.post('http://localhost:9000/api/result', submitInfo)
-      .then(res => setError(res.data.message))
-      .catch(err => setError(err.response.data.message));
+      .then(res => setMessage(res.data.message))
+      .catch(err => setMessage(err.response.data.message));
   }
 
   return (
     <div id="wrapper" className={props.className}>
       <div className="info">
-        <h3 id="coordinates">{message}</h3>
+        <h3 id="coordinates">{coordinates}</h3>
         <h3 id="steps">You moved {steps} time{steps > 1 || steps === 0 ? `s` : ''}</h3>
       </div>
       <div id="grid">
@@ -171,7 +170,7 @@ useEffect(() => {
         }
       </div>
       <div className="info">
-        {error && <h3 id="message">{error}</h3>}
+        {message && <h3 id="message">{message}</h3>}
       </div>
       <div id="keypad">
         <button id="left" onClick={move}>LEFT</button>
