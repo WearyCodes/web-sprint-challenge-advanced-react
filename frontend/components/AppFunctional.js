@@ -85,6 +85,7 @@ export default function AppFunctional(props) {
       case 'up':
         if(index === 0 || index === 1 || index === 2){
           setError('You can`t go up')
+          
           return index
         }
         else {
@@ -92,18 +93,21 @@ export default function AppFunctional(props) {
       case 'down':
         if(index === 6 || index === 7 || index === 8){
           setError('You can`t go down')
+          
           return index
         }
         else return index + 3 < 9 ? index + 3 : index;
       case 'right':
         if(index === 2 || index === 5 || index === 8){
           setError('You can`t go right')
+          
           return index
         }
         else return (index + 1) % 3 !== 0 ? index + 1 : index;
       case 'left':
         if(index === 0 || index === 3 || index === 6){
           setError('You can`t go left')
+          
           return index
         }
         else return index % 3 !== 0 ? index - 1 : index;
@@ -147,7 +151,7 @@ useEffect(() => {
     };
 
     axios.post('http://localhost:9000/api/result', submitInfo)
-      .then(res => console.log(res))
+      .then(res => setError(res.data.message))
       .catch(err => setError(err.response.data.message));
   }
 
