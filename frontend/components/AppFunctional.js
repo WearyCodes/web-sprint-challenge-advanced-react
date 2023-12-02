@@ -35,24 +35,24 @@ export default function AppFunctional(props) {
         y = 1;
         break
       case 3:
-        x = 2;
-        y = 1;
+        x = 1;
+        y = 2;
         break
       case 4:
         x = 2;
         y = 2;
         break
       case 5 :
-        x = 2;
-        y = 3;
-        break
-      case 6:
-        x = 3;
-        y = 1;
-        break
-      case 7:
         x = 3;
         y = 2;
+        break
+      case 6:
+        x = 1;
+        y = 3;
+        break
+      case 7:
+        x = 2;
+        y = 3;
         break
       case 8:
         x = 3;
