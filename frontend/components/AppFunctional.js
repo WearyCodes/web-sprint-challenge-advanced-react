@@ -83,15 +83,33 @@ export default function AppFunctional(props) {
   function getNextIndex(direction) {
     switch (direction) {
       case 'up':
-        return index - 3 >= 0 ? index - 3 : index;
+        if(index === 0 || index === 1 || index === 2){
+          setError('You can`t go up')
+          return index
+        }
+        else {
+        return index - 3 >= 0 ? index - 3 : index;}
       case 'down':
-        return index + 3 < 9 ? index + 3 : index;
+        if(index === 6 || index === 7 || index === 8){
+          setError('You can`t go down')
+          return index
+        }
+        else return index + 3 < 9 ? index + 3 : index;
       case 'right':
-        return (index + 1) % 3 !== 0 ? index + 1 : index;
+        if(index === 2 || index === 5 || index === 8){
+          setError('You can`t go right')
+          return index
+        }
+        else return (index + 1) % 3 !== 0 ? index + 1 : index;
       case 'left':
-        return index % 3 !== 0 ? index - 1 : index;
+        if(index === 0 || index === 3 || index === 6){
+          setError('You can`t go left')
+          return index
+        }
+        else return index % 3 !== 0 ? index - 1 : index;
       default:
         return index;
+
     }
 
     
@@ -105,7 +123,7 @@ export default function AppFunctional(props) {
     const direction = evt.target.id;
     const nextIndex = getNextIndex(direction);
     setIndex(nextIndex);
-    setSteps(steps + 1);
+    setSteps(nextIndex !== index ? steps + 1 : steps);
     // evt.target.id will be direction
     // This event handler can use the helper above to obtain a new index for the "B",
     // and change any states accordingly.
