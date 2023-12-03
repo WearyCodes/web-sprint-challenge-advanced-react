@@ -9,7 +9,7 @@ test('The page renders', () => {
 })
 test('Clicking submit without email causes error', () => {
   render(<AppClass />)
-  const SubmitButton = screen.getByRole('button')
+  const SubmitButton = screen.getByText('Submit')
   fireEvent.click(SubmitButton)
   const errorText = screen.getByText('email is required')
   expect(errorText).toBeVisible()
