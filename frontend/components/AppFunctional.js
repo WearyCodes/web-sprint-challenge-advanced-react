@@ -152,6 +152,7 @@ useEffect(() => {
     axios.post('http://localhost:9000/api/result', submitInfo)
       .then(res => setMessage(res.data.message))
       .catch(err => setMessage(err.response.data.message));
+      setEmail('')
   }
 
   return (
