@@ -23,3 +23,17 @@ test("Clicking up twice renders you can't go up error)", () => {
   const errorUp = screen.getByText(/you can't go/i)
   expect(errorUp).toBeVisible()
 })
+test('Submit with valid email returns win', () => {
+  const emailInput = screen.getByLabelText(/email/i)
+  fireEvent.type(emailInput, 'wearytwo@gmail.com')
+  const winner = screen.getByText(/win/i)
+  expect(winner).toBeVisible()
+})
+test('Reset button works', () => {
+  const upButton = screen.getByText(/up/i)
+  fireEvent.click(upButton)
+  const resetButton = screen.getByText(/reset/i)
+  fireEvent.click(resetButton)
+  const winner = screen.getByText(/win/i)
+  expect(winner).not.toBeVisible()
+})
