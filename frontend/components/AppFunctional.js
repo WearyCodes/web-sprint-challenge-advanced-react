@@ -6,16 +6,14 @@ const initialMessage = ''
 const initialEmail = ''
 const initialSteps = 0
 const initialIndex = 4 // the index the "B" is at
-const initialError = ''
 const initialCoordinates = 'Coordinates (2, 2)'
 
 export default function AppFunctional(props) {
 
-  const [message, setMessage] = useState()
-  const [email, setEmail] = useState(initialEmail)
-  const [steps, setSteps] = useState(initialSteps)
-  const [index, setIndex] = useState(initialIndex)
-  const [error, setError] = useState(initialError)
+  const [message, setMessage] = useState('')
+  const [email, setEmail] = useState('')
+  const [steps, setSteps] = useState(0)
+  const [index, setIndex] = useState(4)
   const [coordinates, setCoordinates] = useState(initialCoordinates)
 
   function getXY(idx) {
@@ -79,7 +77,6 @@ export default function AppFunctional(props) {
     setEmail(initialEmail)
     setSteps(initialSteps)
     setIndex(initialIndex)
-    setError(initialError)
   }
 
   function getNextIndex(direction) {

@@ -14,3 +14,12 @@ test('Clicking submit without email causes error', () => {
   const errorText = screen.getByText(/email is required/i)
   expect(errorText).toBeVisible()
 })
+test("Clicking up twice renders you can't go up error)", () => {
+  render(<AppClass />)
+  const upButton = screen.getByText(/up/i)
+  fireEvent.click(upButton)
+  fireEvent.click(upButton)
+  fireEvent.click(upButton)
+  const errorUp = screen.getByText(/you can't go/i)
+  expect(errorUp).toBeVisible()
+})
