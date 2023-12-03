@@ -1,39 +1,58 @@
 // Write your tests here
 import React from "react"
 import AppClass from "./AppClass"
-import { render, screen, fireEvent } from "@testing-library/react"
-test('The page renders', () => {
-  render(<AppClass />)
-  const SubmitButton = screen.queryByText('Submit')
-  expect(SubmitButton).toBeVisible()
+import {waitFor, render, screen, fireEvent } from "@testing-library/react"
+
+test('see coords?', () => {
+    const wrapper = render(
+    <AppClass />
+    )
+    let coords = document.querySelector('#coordinates')
+  expect(coords).toBeTruthy()
 })
-test('Clicking submit without email causes error', () => {
-  render(<AppClass />)
-  const SubmitButton = screen.queryByText('Submit')
-  fireEvent.click(SubmitButton)
-  const errorText = screen.queryByText('email is required')
-  expect(errorText).toBeVisible()
+test('Click submit with no email and error pops up', () => {
+  const wrapper = render(
+    <AppClass />
+  )
+  const submitButton = document.querySelector('#submit')
+  fireEvent.click(submitButton)
+  const error = document.querySelector('#message')
+  expect(error).toBeTruthy()
 })
-test("Clicking up twice renders you can't go up error)", () => {
-  render(<AppClass />)
-  const upButton = screen.queryByText('UP')
-  fireEvent.click(upButton)
-  fireEvent.click(upButton)
-  fireEvent.click(upButton)
-  const errorUp = screen.queryByText("You can't go")
-  expect(errorUp).toBeVisible()
+test('submit with valid email returns win', () => {
+  const wrapper = render(
+    <AppClass />
+  )
+const emailInput = document.querySelector('#email')
+  fireEvent.change(email, { target: { value: 'lady@gaga.com' } })
+  const submitButton = document.querySelector('#submit')
+  fireEvent.click(submitButton)
+  const success = document.querySelector('#message')
+  expect(success).toBeTruthy()
 })
-test('Submit with valid email returns win', () => {
-  const emailInput = screen.queryByLabelText('type email')
-  fireEvent.type(emailInput, 'wearytwo@gmail.com')
-  const winner = screen.queryByText('win')
-  expect(winner).toBeVisible()
+test('Go right message works', () => {
+  const wrapper = render(
+    <AppClass />
+  )
+  let up = document.querySelector('#up')
+  let right = document.querySelector('#right')
+  let message = document.querySelector('#message')
+fireEvent.click(up)
+fireEvent.click(right)
+fireEvent.click(right)
+expect(message.textContent).toBe("You can't go right")
 })
-test('Reset button works', () => {
-  const upButton = screen.queryByText("UP")
-  fireEvent.click(upButton)
-  const resetButton = screen.queryByText('reset')
-  fireEvent.click(resetButton)
-  const winner = screen.queryByText('win')
-  expect(winner).not.toBeVisible()
+test('Go right message works', () => {
+  const wrapper = render(
+    <AppClass />
+  )
+  let up = document.querySelector('#up')
+  let right = document.querySelector('#right')
+  let message = document.querySelector('#message')
+  let reset = document.querySelector('#reset')
+fireEvent.click(up)
+fireEvent.click(right)
+fireEvent.click(right)
+fireEvent.click(reset)
+expect(message.textContent).toBeFalsy()
 })

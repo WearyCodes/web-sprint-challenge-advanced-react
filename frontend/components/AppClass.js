@@ -188,7 +188,7 @@ export default class AppClass extends React.Component {
         </div>
         <form onSubmit={this.onSubmit}>
           <input id="email" type="email" placeholder="type email" value={this.state.email} onChange={this.onChange}></input>
-          <input id="submit" type="submit"></input>
+          <input testid="submit" id="submit" type="submit"></input>
         </form>
       </div>
     )
