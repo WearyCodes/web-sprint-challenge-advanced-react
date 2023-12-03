@@ -170,7 +170,7 @@ useEffect(() => {
         }
       </div>
       <div className="info">
-        {message && <h3 id="message">{message}</h3>}
+        <h3 id="message">{message}</h3>
       </div>
       <div id="keypad">
         <button id="left" onClick={move}>LEFT</button>
