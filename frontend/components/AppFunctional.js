@@ -83,26 +83,26 @@ export default function AppFunctional(props) {
     switch (direction) {
       case 'up':
         if(index === 0 || index === 1 || index === 2){
-          setMessage('You can`t go up')
+          setMessage("You can't go up")
           return index
         }
         else {
         return index - 3 >= 0 ? index - 3 : index;}
       case 'down':
         if(index === 6 || index === 7 || index === 8){
-          setMessage('You can`t go down')
+          setMessage("You can't go down")
           return index
         }
         else return index + 3 < 9 ? index + 3 : index;
       case 'right':
         if(index === 2 || index === 5 || index === 8){
-          setMessage('You can`t go right')
+          setMessage("You cant go right")
           return index
         }
         else return (index + 1) % 3 !== 0 ? index + 1 : index;
       case 'left':
         if(index === 0 || index === 3 || index === 6){
-          setMessage('You can`t go left')
+          setMessage("You can't go left")
           return index
         }
         else return index % 3 !== 0 ? index - 1 : index;

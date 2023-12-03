@@ -99,19 +99,19 @@ export default class AppClass extends React.Component {
     // this helper should return the current index unchanged.
     switch (direction) {
       case 'up':
-        if (this.state.index === 0 || this.state.index === 1 || this.state.index === 2) { this.setState({ ...this.state, message: 'You can`t go up' }) }
+        if (this.state.index === 0 || this.state.index === 1 || this.state.index === 2) { this.setState({ ...this.state, message: "You can't go up" }) }
         else {this.setState({...this.state, message: ''})}
         return this.state.index - 3 >= 0 ? this.state.index - 3 : this.state.index;
       case 'down':
-        if (this.state.index === 6 || this.state.index === 7 || this.state.index === 8) { this.setState({ ...this.state, message: 'You can`t go down' }) }
+        if (this.state.index === 6 || this.state.index === 7 || this.state.index === 8) { this.setState({ ...this.state, message: "You can't go down" }) }
         else {this.setState({...this.state, message: ''})}
         return this.state.index + 3 < 9 ? this.state.index + 3 : this.state.index;
       case 'right':
-        if (this.state.index === 2 || this.state.index === 5 || this.state.index === 8) { this.setState({ ...this.state, message: 'You can`t go right' }) }
+        if (this.state.index === 2 || this.state.index === 5 || this.state.index === 8) { this.setState({ ...this.state, message: "You can't go right" }) }
         else {this.setState({...this.state, message: ''})}
         return (this.state.index + 1) % 3 !== 0 ? this.state.index + 1 : this.state.index;
       case 'left':
-        if (this.state.index === 0 || this.state.index === 3 || this.state.index === 6) { this.setState({ ...this.state, message: 'You can`t go left' }) }
+        if (this.state.index === 0 || this.state.index === 3 || this.state.index === 6) { this.setState({ ...this.state, message: "You can't go left" }) }
         else {this.setState({...this.state, message: ''})}
         return this.state.index % 3 !== 0 ? this.state.index - 1 : this.state.index;
       default:
