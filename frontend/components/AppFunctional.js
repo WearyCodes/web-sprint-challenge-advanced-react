@@ -96,7 +96,7 @@ export default function AppFunctional(props) {
         else return index + 3 < 9 ? index + 3 : index;
       case 'right':
         if(index === 2 || index === 5 || index === 8){
-          setMessage("You cant go right")
+          setMessage("You can't go right")
           return index
         }
         else return (index + 1) % 3 !== 0 ? index + 1 : index;
