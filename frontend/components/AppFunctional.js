@@ -10,7 +10,7 @@ const initialCoordinates = 'Coordinates (2, 2)'
 
 export default function AppFunctional(props) {
 
-  const [message, setMessage] = useState('')
+  const [message, setMessage] = useState()
   const [email, setEmail] = useState('')
   const [steps, setSteps] = useState(0)
   const [index, setIndex] = useState(4)
@@ -107,7 +107,7 @@ export default function AppFunctional(props) {
         }
         else return index % 3 !== 0 ? index - 1 : index;
       default:
-        setMessage(initialMessage)
+        setMessage()
         return index;
 
     }
@@ -130,7 +130,7 @@ export default function AppFunctional(props) {
   }
 useEffect(() => {
   getXYMessage()
-  setMessage('')
+  setMessage()
 }, [index])
 
 
