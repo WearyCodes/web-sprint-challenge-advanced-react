@@ -4,7 +4,7 @@ import AppClass from "./AppClass"
 import { render, screen, fireEvent } from "@testing-library/react"
 test('The page renders', () => {
   render(<AppClass />)
-  const SubmitButton = screen.getByRole('button')
+  const SubmitButton = screen.getByText(/submit/i)
   expect(SubmitButton).toBeVisible()
 })
 test('Clicking submit without email causes error', () => {
